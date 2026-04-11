@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@resumoscc — Materiais de Estudo para CC</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --laranja: #F97316;
+    --laranja-claro: #FFF7ED;
+    --amarelo: #FACC15;
+    --preto: #0A0A0A;
+    --cinza-esc: #111111;
+    --cinza-med: #1C1C1C;
+    --cinza-borda: #2A2A2A;
+    --branco: #FFFFFF;
+    --texto-muted: #9CA3AF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--preto);
+    color: var(--branco);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ───────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 70%);
+    top: -100px; right: -150px;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(250,204,21,0.08) 0%, transparent 70%);
+    bottom: -80px; left: -100px;
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--cinza-med);
+    border: 1px solid var(--cinza-borda);
+    color: var(--laranja);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+  }
+
+  .hero h1 span {
+    color: var(--laranja);
+    position: relative;
+  }
+
+  .hero h1 span::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 0;
+    width: 100%; height: 3px;
+    background: var(--amarelo);
+    border-radius: 2px;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--texto-muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--laranja);
+    color: var(--preto);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background: #ea6a0a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(249,115,22,0.35);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--branco);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1px solid var(--cinza-borda);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--laranja);
+    color: var(--laranja);
+  }
+
+  /* ── MARQUEE ────────────────────────────────────── */
+  .marquee-wrap {
+    border-top: 1px solid var(--cinza-borda);
+    border-bottom: 1px solid var(--cinza-borda);
+    padding: 1rem 0;
+    overflow: hidden;
+    background: var(--cinza-med);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-track span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--texto-muted);
+    flex-shrink: 0;
+  }
+
+  .marquee-track span.dot {
+    color: var(--laranja);
+    font-size: 1.2rem;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── SEÇÕES ─────────────────────────────────────── */
+  section { padding: 5rem 2rem; }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--texto-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── CARDS DE PRODUTO ───────────────────────────── */
+  .product-group {
+    margin-bottom: 4rem;
+  }
+
+  .group-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .group-icon {
+    width: 36px; height: 36px;
+    background: var(--laranja);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .group-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--branco);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    background: var(--cinza-med);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--laranja);
+    border-radius: 4px 0 0 4px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .card:hover {
+    border-color: rgba(249,115,22,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--branco);
+    margin-bottom: 0.4rem;
+  }
+
+  .card-detail {
+    font-size: 0.85rem;
+    color: var(--texto-muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .card-price {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--laranja);
+  }
+
+  .card-price small {
+    font-size: 0.75rem;
+    color: var(--texto-muted);
+    font-weight: 400;
+    display: block;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .btn-comprar {
+    background: var(--laranja);
+    color: var(--preto);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-comprar:hover {
+    background: #ea6a0a;
+    transform: scale(1.04);
+  }
+
+  .card-tag {
+    display: inline-block;
+    background: rgba(250,204,21,0.12);
+    color: var(--amarelo);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    margin-bottom: 0.75rem;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .card-tag.green {
+    background: rgba(34,197,94,0.12);
+    color: #4ade80;
+  }
+
+  .card-tag.orange {
+    background: rgba(249,115,22,0.12);
+    color: var(--laranja);
+  }
+
+  /* Card combinar */
+  .card-combinar .card-price {
+    font-size: 1rem;
+    color: var(--texto-muted);
+  }
+
+  /* ── NOTA DE MATÉRIAS ───────────────────────────── */
+  .nota-box {
+    background: var(--cinza-med);
+    border: 1px solid var(--cinza-borda);
+    border-left: 3px solid var(--amarelo);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--texto-muted);
+    line-height: 1.6;
+  }
+
+  .nota-box strong { color: var(--amarelo); }
+
+  /* ── BANNER DESTAQUE ────────────────────────────── */
+  .banner-destaque {
+    background: linear-gradient(135deg, var(--laranja) 0%, #ea580c 100%);
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  .banner-destaque h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--preto);
+    margin-bottom: 0.5rem;
+  }
+
+  .banner-destaque p {
+    color: rgba(0,0,0,0.65);
+    font-size: 0.95rem;
+    max-width: 400px;
+  }
+
+  .btn-banner {
+    background: var(--preto);
+    color: var(--branco);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .btn-banner:hover {
+    background: #111;
+    transform: translateY(-2px);
+  }
+
+  /* ── SOBRE ──────────────────────────────────────── */
+  .sobre-box {
+    background: var(--cinza-med);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 20px;
+    padding: 3rem;
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .sobre-avatar {
+    width: 64px; height: 64px;
+    background: var(--laranja);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--preto);
+    flex-shrink: 0;
+  }
+
+  .sobre-texto h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sobre-texto p {
+    color: var(--texto-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* ── FOOTER ─────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--cinza-borda);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    color: var(--texto-muted);
+    font-size: 0.85rem;
+  }
+
+  footer a {
+    color: var(--laranja);
+    text-decoration: none;
+  }
+
+  /* ── SCROLL REVEAL ──────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────────── */
+  @media (max-width: 600px) {
+    .banner-destaque { flex-direction: column; }
+    .sobre-box { flex-direction: column; }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">@resumoscc</div>
+  <h1>Materiais feitos por quem<br>estuda <span>CC de verdade</span></h1>
+  <p>Resumos, listas de exercícios, flashcards e muito mais — produzidos por uma estudante de Ciência da Computação para quem não tem tempo a perder.</p>
+  <div class="hero-cta">
+    <a href="#produtos" class="btn-primary">Ver produtos ↓</a>
+    <a href="https://wa.me/5532999943382" target="_blank" class="btn-secondary">Falar no WhatsApp</a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Resumos Digitais</span><span class="dot">●</span>
+    <span>Listas de Exercícios</span><span class="dot">●</span>
+    <span>Flashcards Físicos</span><span class="dot">●</span>
+    <span>Combos com Desconto</span><span class="dot">●</span>
+    <span>Aulas Particulares</span><span class="dot">●</span>
+    <span>Planos Mensais</span><span class="dot">●</span>
+    <span>Resumos Digitais</span><span class="dot">●</span>
+    <span>Listas de Exercícios</span><span class="dot">●</span>
+    <span>Flashcards Físicos</span><span class="dot">●</span>
+    <span>Combos com Desconto</span><span class="dot">●</span>
+    <span>Aulas Particulares</span><span class="dot">●</span>
+    <span>Planos Mensais</span><span class="dot">●</span>
+  </div>
+</div>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="container">
+
+    <div class="section-label reveal">Catálogo completo</div>
+    <h2 class="section-title reveal">Escolha seu material</h2>
+    <p class="section-sub reveal">Todos os materiais são feitos sob demanda e entregues digitalmente, exceto quando indicado.</p>
+
+    <!-- RESUMOS -->
+    <div class="product-group reveal">
+      <div class="group-header">
+        <div class="group-icon">📄</div>
+        <div class="group-title">Resumos</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-tag">Digital · Word</div>
+          <div class="card-name">Resumo Digital — 1 assunto + 10 exercícios</div>
+          <div class="card-detail">Matérias da grade de CC</div>
+          <div class="card-footer">
+            <div class="card-price"><small>a partir de</small>R$ 20,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20digital%20(1%20assunto%20+%2010%20exercícios)" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Digital · Word</div>
+          <div class="card-name">Resumo Completo de Matéria</div>
+          <div class="card-detail">Conteúdo completo da disciplina</div>
+          <div class="card-footer">
+            <div class="card-price"><small>a partir de</small>R$ 30,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20completo%20de%20matéria" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag orange">Feito à mão · Foto/Scan</div>
+          <div class="card-name">Resumo Feito à Mão — 1 assunto</div>
+          <div class="card-detail">Entregue digitalizado em alta qualidade</div>
+          <div class="card-footer">
+            <div class="card-price"><small>a partir de</small>R$ 20,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20feito%20à%20mão" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card card-combinar">
+          <div class="card-tag orange">Feito à mão · Físico</div>
+          <div class="card-name">Resumo Feito à Mão — Físico</div>
+          <div class="card-detail">Entregue presencialmente — 1 assunto</div>
+          <div class="card-footer">
+            <div class="card-price">A combinar</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20físico%20feito%20à%20mão" target="_blank" class="btn-comprar">Consultar</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="nota-box">
+        <strong>Atenção:</strong> Matérias fora da grade de CC acrescem 20% no preço, com prazo de entrega de aproximadamente 1 semana.
+      </div>
+    </div>
+
+    <!-- LISTAS -->
+    <div class="product-group reveal">
+      <div class="group-header">
+        <div class="group-icon">📝</div>
+        <div class="group-title">Listas de Exercícios</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-tag green">Pequena</div>
+          <div class="card-name">Lista Pequena</div>
+          <div class="card-detail">Até 15 questões</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 9,90</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20uma%20lista%20pequena%20de%20exercícios" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Média</div>
+          <div class="card-name">Lista Média</div>
+          <div class="card-detail">Até 30 questões</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 13,90</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20uma%20lista%20média%20de%20exercícios" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag orange">Grande</div>
+          <div class="card-name">Lista Grande</div>
+          <div class="card-detail">Acima de 30 questões — com ou sem gabarito</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 23,90</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20uma%20lista%20grande%20de%20exercícios" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FLASHCARDS -->
+    <div class="product-group reveal">
+      <div class="group-header">
+        <div class="group-icon">🗂️</div>
+        <div class="group-title">Flashcards Físicos — Entrega Presencial</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-tag green">Kit Básico</div>
+          <div class="card-name">10 unidades</div>
+          <div class="card-detail">Flashcards físicos para revisão ativa</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 8,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20kit%20básico%20de%20flashcards%20(10%20unidades)" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Kit Intermediário</div>
+          <div class="card-name">20 unidades</div>
+          <div class="card-detail">Flashcards físicos para revisão ativa</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 15,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20kit%20intermediário%20de%20flashcards%20(20%20unidades)" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag orange">Kit Completo</div>
+          <div class="card-name">30 unidades</div>
+          <div class="card-detail">Flashcards físicos para revisão ativa</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 22,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20kit%20completo%20de%20flashcards%20(30%20unidades)" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COMBOS -->
+    <div class="product-group reveal">
+      <div class="group-header">
+        <div class="group-icon">🎁</div>
+        <div class="group-title">Combos — 10% de desconto</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-tag green">Combo</div>
+          <div class="card-name">Resumo + Flashcards</div>
+          <div class="card-detail">Resumo de 1 assunto + kit intermediário (20 un.)</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 31,50</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20combo%20Resumo%20+%20Flashcards" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag green">Combo</div>
+          <div class="card-name">Resumo + Lista</div>
+          <div class="card-detail">Resumo de 1 assunto + lista média</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 30,50</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20combo%20Resumo%20+%20Lista" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag green">Combo</div>
+          <div class="card-name">Resumo + Lista + Flashcards</div>
+          <div class="card-detail">Resumo + lista média + kit intermediário</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 44,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20combo%20Resumo%20+%20Lista%20+%20Flashcards" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag orange">Combo Completo</div>
+          <div class="card-name">Combo Completo</div>
+          <div class="card-detail">Resumo + lista média + kit intermediário + aula de 1h</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 71,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20Combo%20Completo" target="_blank" class="btn-comprar">Pedir agora</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AULAS PARTICULARES -->
+    <div class="product-group reveal">
+      <div class="group-header">
+        <div class="group-icon">🎓</div>
+        <div class="group-title">Aulas Particulares</div>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-tag">Online ou Presencial</div>
+          <div class="card-name">Aula Avulsa — 1 hora</div>
+          <div class="card-detail">Focada na sua dificuldade</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 30,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20agendar%20uma%20aula%20particular%20avulsa" target="_blank" class="btn-comprar">Agendar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag orange">Pacote</div>
+          <div class="card-name">Pacote 2 Horas</div>
+          <div class="card-detail">Online ou presencial — focado na sua dificuldade</div>
+          <div class="card-footer">
+            <div class="card-price">R$ 55,00</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20pacote%20de%202%20horas%20de%20aula%20particular" target="_blank" class="btn-comprar">Agendar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AJUDA EM TRABALHOS -->
+    <div class="product-group reveal">
+      <div class="group-header">
+        <div class="group-icon">💼</div>
+        <div class="group-title">Ajuda em Trabalhos</div>
+      </div>
+      <div class="cards-grid">
+        <div class="card card-combinar">
+          <div class="card-name">Auxílio em Trabalhos Acadêmicos</div>
+          <div class="card-detail">Entre em contato para orçamento conforme o trabalho.</div>
+          <div class="card-footer">
+            <div class="card-price">A combinar</div>
+            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20orçamento%20para%20ajuda%20em%20trabalho" target="_blank" class="btn-comprar">Consultar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANNER CTA -->
+    <div class="banner-destaque reveal">
+      <div>
+        <h3>Não encontrou o que precisa?</h3>
+        <p>Fala comigo no WhatsApp e a gente resolve. Produzo materiais sob demanda para qualquer matéria.</p>
+      </div>
+      <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20material%20personalizado" target="_blank" class="btn-banner">Falar agora →</a>
+    </div>
+
+    <!-- SOBRE -->
+    <div class="reveal">
+      <div class="section-label">Quem faz</div>
+      <h2 class="section-title">Feito por quem vive o CC</h2>
+      <br>
+      <div class="sobre-box">
+        <div class="sobre-avatar">G</div>
+        <div class="sobre-texto">
+          <h3>Gabriella Flausino</h3>
+          <p>Estudante de Ciência da Computação em uma universidade federal. Produzo materiais de estudo a partir da minha própria rotina acadêmica — não é conteúdo genérico, é o que realmente funciona nas matérias de CC. Acompanhe no Instagram: <a href="https://instagram.com/resumoscc" style="color:var(--laranja)">@resumoscc</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
