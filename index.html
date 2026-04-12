@@ -41,6 +41,9 @@
     padding: 6rem 2rem 4rem;
     position: relative;
     overflow: hidden;
+    background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80');
+    background-size: cover;
+    background-attachment: fixed;
   }
 
   .hero::before {
@@ -49,6 +52,11 @@
     width: 600px; height: 600px;
     background: radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 70%);
     top: -100px; right: -150px;
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.78);
     pointer-events: none;
   }
 
