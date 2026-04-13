@@ -997,6 +997,41 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(249,115,22,0.35);
   }
+
+  /* ── CONTADOR ───────────────────────────────────── */
+  .contador-section {
+    padding: 3rem 2rem;
+    background: var(--cinza-med);
+    border-top: 1px solid var(--cinza-borda);
+    border-bottom: 1px solid var(--cinza-borda);
+  }
+
+  .contador-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .contador-item {}
+
+  .contador-numero {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.8rem;
+    color: var(--laranja);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .contador-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--texto-muted);
+    line-height: 1.4;
+  }
 </style>
 </head>
 <body>
