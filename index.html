@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>@resumoscc — Materiais de Estudo para CC</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nNicgZmlsbD0nJTIzRjk3MzE2Jy8+PHRleHQgeD0nNTAlJyB5PSc1NCUnIGRvbWluYW50LWJhc2VsaW5lPSdtaWRkbGUnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdBcmlhbCxzYW5zLXNlcmlmJyBmb250LXdlaWdodD0nOTAwJyBmb250LXNpemU9JzExJyBmaWxsPSclMjNGRkZGRkYnPnJjYzwvdGV4dD48L3N2Zz4=">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -673,6 +674,35 @@
   .page.active .card:nth-child(2) { animation-delay: 0.12s; }
   .page.active .card:nth-child(3) { animation-delay: 0.19s; }
   .page.active .card:nth-child(4) { animation-delay: 0.26s; }
+
+  /* ── BOTÃO VOLTAR AO INÍCIO ─────────────────────── */
+  .btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--texto-muted);
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+    transition: color 0.2s;
+  }
+
+  .btn-voltar:hover { color: var(--laranja); }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-right: 5rem;
+  }
 </style>
 </head>
 <body>
@@ -785,7 +815,12 @@
       <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20material%20personalizado" target="_blank" class="btn-banner">Falar agora →</a>
     </div>
   </div>
-  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+      <button class="btn-voltar" onclick="goTo('inicio')">↑ Voltar ao início</button>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ PÁGINA: LISTAS ══ -->
@@ -831,7 +866,12 @@
       <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20material%20personalizado" target="_blank" class="btn-banner">Falar agora →</a>
     </div>
   </div>
-  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+      <button class="btn-voltar" onclick="goTo('inicio')">↑ Voltar ao início</button>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ PÁGINA: FLASHCARDS ══ -->
@@ -877,7 +917,12 @@
       <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20material%20personalizado" target="_blank" class="btn-banner">Falar agora →</a>
     </div>
   </div>
-  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+      <button class="btn-voltar" onclick="goTo('inicio')">↑ Voltar ao início</button>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ PÁGINA: COMBOS ══ -->
@@ -932,7 +977,12 @@
       <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20combo%20personalizado" target="_blank" class="btn-banner">Falar agora →</a>
     </div>
   </div>
-  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+      <button class="btn-voltar" onclick="goTo('inicio')">↑ Voltar ao início</button>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ PÁGINA: AULAS ══ -->
@@ -969,7 +1019,12 @@
       <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20agendar%20uma%20aula%20particular" target="_blank" class="btn-banner">Falar agora →</a>
     </div>
   </div>
-  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+      <button class="btn-voltar" onclick="goTo('inicio')">↑ Voltar ao início</button>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ PÁGINA: TRABALHOS ══ -->
@@ -996,7 +1051,12 @@
       <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20orçamento%20para%20ajuda%20em%20trabalho" target="_blank" class="btn-banner">Falar agora →</a>
     </div>
   </div>
-  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+      <button class="btn-voltar" onclick="goTo('inicio')">↑ Voltar ao início</button>
+    </div>
+  </footer>
 </div>
 
 <!-- ══ PÁGINA: CONTATO ══ -->
@@ -1030,7 +1090,12 @@
       </a>
     </div>
   </div>
-  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+      <button class="btn-voltar" onclick="goTo('inicio')">↑ Voltar ao início</button>
+    </div>
+  </footer>
 </div>
 
 <!-- BOTÃO FLUTUANTE WHATSAPP -->
