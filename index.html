@@ -721,14 +721,43 @@
     padding-right: 5rem;
   }
 
-  /* ── CORES POR PÁGINA ───────────────────────────── */
-  #page-resumos    { background: #0A0A0F; }
-  #page-listas     { background: #0A0F0A; }
-  #page-flashcards { background: #0F0A0A; }
-  #page-combos     { background: #0A0D0F; }
-  #page-aulas      { background: #0F0D0A; }
-  #page-trabalhos  { background: #0D0A0F; }
-  #page-contato    { background: #0A0A0A; }
+  /* ── BACKGROUNDS DAS PÁGINAS ────────────────────── */
+  #page-resumos    { background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+  #page-listas     { background-image: url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+  #page-flashcards { background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+  #page-combos     { background-image: url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+  #page-aulas      { background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+  #page-trabalhos  { background-image: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+  #page-contato    { background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+
+  /* Overlay escuro em todas as páginas com fundo */
+  #page-resumos .page-content,
+  #page-listas .page-content,
+  #page-flashcards .page-content,
+  #page-combos .page-content,
+  #page-aulas .page-content,
+  #page-trabalhos .page-content,
+  #page-contato .page-content {
+    background: rgba(10,10,10,0.82);
+    backdrop-filter: blur(1px);
+  }
+
+  #page-resumos footer,
+  #page-listas footer,
+  #page-flashcards footer,
+  #page-combos footer,
+  #page-aulas footer,
+  #page-trabalhos footer,
+  #page-contato footer {
+    background: rgba(10,10,10,0.9);
+  }
+
+  @media (max-width: 600px) {
+    #page-resumos, #page-listas, #page-flashcards,
+    #page-combos, #page-aulas, #page-trabalhos, #page-contato {
+      background-attachment: scroll;
+    }
+  }
 
   /* ── CARDS DE NAVEGAÇÃO (INÍCIO) ───────────────── */
   .nav-cards-section {
