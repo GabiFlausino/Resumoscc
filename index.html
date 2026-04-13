@@ -488,24 +488,24 @@
   .banner-destaque {
     background: linear-gradient(135deg, var(--laranja) 0%, #ea580c 100%);
     border-radius: 20px;
-    padding: 3rem 2.5rem;
+    padding: 2.5rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
+    text-align: center;
+    gap: 1.5rem;
     margin-top: 3rem;
   }
 
   .banner-destaque h3 {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: 1.6rem;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
     color: var(--preto);
     margin-bottom: 0.5rem;
   }
 
-  .banner-destaque p { color: rgba(0,0,0,0.65); font-size: 0.95rem; max-width: 400px; }
+  .banner-destaque p { color: rgba(0,0,0,0.65); font-size: 0.95rem; }
 
   .btn-banner {
     background: var(--preto);
@@ -712,6 +712,96 @@
   #page-aulas      { background: #0F0D0A; }
   #page-trabalhos  { background: #0D0A0F; }
   #page-contato    { background: #0A0A0A; }
+
+  /* ── CARDS DE NAVEGAÇÃO (INÍCIO) ───────────────── */
+  .nav-cards-section {
+    padding: 4rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .nav-cards-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 0.75rem;
+  }
+
+  .nav-cards-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    margin-bottom: 2rem;
+  }
+
+  .nav-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .nav-card {
+    background: var(--cinza-med);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--laranja);
+    border-radius: 4px 0 0 4px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .nav-card:hover {
+    border-color: rgba(249,115,22,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  .nav-card:hover::before { opacity: 1; }
+
+  .nav-card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .nav-card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--branco);
+  }
+
+  .nav-card-desc {
+    font-size: 0.85rem;
+    color: var(--texto-muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .nav-card-cta {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--laranja);
+    margin-top: 0.5rem;
+  }
 </style>
 </head>
 <body>
