@@ -8,7 +8,6 @@
 <style>
   :root {
     --laranja: #F97316;
-    --laranja-claro: #FFF7ED;
     --amarelo: #FACC15;
     --preto: #0A0A0A;
     --cinza-esc: #111111;
@@ -19,9 +18,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--preto);
     color: var(--branco);
@@ -30,7 +27,123 @@
     overflow-x: hidden;
   }
 
-  /* ── HERO ───────────────────────────────────────── */
+  /* ── NAVBAR ─────────────────────────────────────── */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--cinza-borda);
+  }
+
+  .navbar-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--laranja);
+    letter-spacing: 0.05em;
+  }
+
+  .hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--branco);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── MENU LATERAL ───────────────────────────────── */
+  .sidebar {
+    position: fixed;
+    top: 0; right: -320px;
+    width: 300px;
+    height: 100vh;
+    background: var(--cinza-esc);
+    border-left: 1px solid var(--cinza-borda);
+    z-index: 99;
+    transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+    padding: 6rem 2rem 2rem;
+    gap: 0.25rem;
+  }
+
+  .sidebar.open { right: 0; }
+
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 98;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s;
+  }
+
+  .sidebar-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .sidebar-item {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--texto-muted);
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .sidebar-item:hover {
+    color: var(--branco);
+    background: var(--cinza-med);
+  }
+
+  .sidebar-item.active {
+    color: var(--laranja);
+    background: rgba(249,115,22,0.08);
+    border-color: rgba(249,115,22,0.2);
+  }
+
+  /* ── PÁGINAS ─────────────────────────────────────── */
+  .page {
+    display: none;
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+
+  .page.active { display: block; }
+
+  /* ── HERO / INÍCIO ──────────────────────────────── */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -51,7 +164,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(10, 10, 10, 0.80);
+    background: rgba(10,10,10,0.80);
     pointer-events: none;
     z-index: 0;
   }
@@ -127,45 +240,6 @@
     z-index: 1;
   }
 
-  .btn-primary {
-    background: var(--laranja);
-    color: var(--preto);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    padding: 0.9rem 2rem;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .btn-primary:hover {
-    background: #ea6a0a;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(249,115,22,0.35);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--branco);
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.9rem 2rem;
-    border-radius: 100px;
-    text-decoration: none;
-    border: 1px solid var(--cinza-borda);
-    transition: all 0.2s;
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--laranja);
-    color: var(--laranja);
-  }
-
   /* ── MARQUEE ────────────────────────────────────── */
   .marquee-wrap {
     border-top: 1px solid var(--cinza-borda);
@@ -192,20 +266,19 @@
     flex-shrink: 0;
   }
 
-  .marquee-track span.dot {
-    color: var(--laranja);
-    font-size: 1.2rem;
-  }
+  .marquee-track span.dot { color: var(--laranja); font-size: 1.2rem; }
 
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
 
-  /* ── SEÇÕES ─────────────────────────────────────── */
-  section { padding: 5rem 2rem; }
-
-  .container { max-width: 1000px; margin: 0 auto; }
+  /* ── SEÇÕES DE PRODUTO ──────────────────────────── */
+  .page-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem 2rem 5rem;
+  }
 
   .section-label {
     font-family: 'Syne', sans-serif;
@@ -231,36 +304,6 @@
     line-height: 1.7;
     max-width: 560px;
     margin-bottom: 3rem;
-  }
-
-  /* ── CARDS DE PRODUTO ───────────────────────────── */
-  .product-group {
-    margin-bottom: 4rem;
-  }
-
-  .group-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .group-icon {
-    width: 36px; height: 36px;
-    background: var(--laranja);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-
-  .group-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: var(--branco);
   }
 
   .cards-grid {
@@ -336,22 +379,9 @@
     margin-bottom: 2px;
   }
 
-  .btn-comprar {
-    background: var(--laranja);
-    color: var(--preto);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    padding: 0.55rem 1.1rem;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-
-  .btn-comprar:hover {
-    background: #ea6a0a;
-    transform: scale(1.04);
+  .card-combinar .card-price {
+    font-size: 1rem;
+    color: var(--texto-muted);
   }
 
   .card-tag {
@@ -367,23 +397,9 @@
     letter-spacing: 0.05em;
   }
 
-  .card-tag.green {
-    background: rgba(34,197,94,0.12);
-    color: #4ade80;
-  }
+  .card-tag.green { background: rgba(34,197,94,0.12); color: #4ade80; }
+  .card-tag.orange { background: rgba(249,115,22,0.12); color: var(--laranja); }
 
-  .card-tag.orange {
-    background: rgba(249,115,22,0.12);
-    color: var(--laranja);
-  }
-
-  /* Card combinar */
-  .card-combinar .card-price {
-    font-size: 1rem;
-    color: var(--texto-muted);
-  }
-
-  /* ── NOTA DE MATÉRIAS ───────────────────────────── */
   .nota-box {
     background: var(--cinza-med);
     border: 1px solid var(--cinza-borda);
@@ -398,7 +414,59 @@
 
   .nota-box strong { color: var(--amarelo); }
 
-  /* ── BANNER DESTAQUE ────────────────────────────── */
+  /* ── BOTÕES ─────────────────────────────────────── */
+  .btn-primary {
+    background: var(--laranja);
+    color: var(--preto);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background: #ea6a0a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(249,115,22,0.35);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--branco);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1px solid var(--cinza-borda);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--laranja); color: var(--laranja); }
+
+  .btn-comprar {
+    background: var(--laranja);
+    color: var(--preto);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-comprar:hover { background: #ea6a0a; transform: scale(1.04); }
+
+  /* ── BANNER CTA ─────────────────────────────────── */
   .banner-destaque {
     background: linear-gradient(135deg, var(--laranja) 0%, #ea580c 100%);
     border-radius: 20px;
@@ -408,7 +476,7 @@
     justify-content: space-between;
     gap: 2rem;
     flex-wrap: wrap;
-    margin-bottom: 4rem;
+    margin-top: 3rem;
   }
 
   .banner-destaque h3 {
@@ -419,11 +487,7 @@
     margin-bottom: 0.5rem;
   }
 
-  .banner-destaque p {
-    color: rgba(0,0,0,0.65);
-    font-size: 0.95rem;
-    max-width: 400px;
-  }
+  .banner-destaque p { color: rgba(0,0,0,0.65); font-size: 0.95rem; max-width: 400px; }
 
   .btn-banner {
     background: var(--preto);
@@ -439,12 +503,9 @@
     flex-shrink: 0;
   }
 
-  .btn-banner:hover {
-    background: #111;
-    transform: translateY(-2px);
-  }
+  .btn-banner:hover { background: #111; transform: translateY(-2px); }
 
-  /* ── SOBRE ──────────────────────────────────────── */
+  /* ── SOBRE / CONTATO ────────────────────────────── */
   .sobre-box {
     background: var(--cinza-med);
     border: 1px solid var(--cinza-borda);
@@ -454,6 +515,7 @@
     gap: 2.5rem;
     align-items: flex-start;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
   }
 
   .sobre-avatar {
@@ -484,34 +546,63 @@
     max-width: 600px;
   }
 
+  .contato-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .contato-card {
+    background: var(--cinza-med);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .contato-card:hover {
+    border-color: rgba(249,115,22,0.4);
+    transform: translateY(-2px);
+  }
+
+  .contato-icon {
+    width: 44px; height: 44px;
+    background: rgba(249,115,22,0.12);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .contato-info span {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--branco);
+  }
+
+  .contato-info small {
+    color: var(--texto-muted);
+    font-size: 0.8rem;
+  }
+
   /* ── FOOTER ─────────────────────────────────────── */
   footer {
     border-top: 1px solid var(--cinza-borda);
-    padding: 2.5rem 2rem;
+    padding: 2rem 2rem;
     text-align: center;
   }
 
-  footer p {
-    color: var(--texto-muted);
-    font-size: 0.85rem;
-  }
-
-  footer a {
-    color: var(--laranja);
-    text-decoration: none;
-  }
-
-  /* ── SCROLL REVEAL ──────────────────────────────── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  footer p { color: var(--texto-muted); font-size: 0.85rem; }
+  footer a { color: var(--laranja); text-decoration: none; }
 
   /* ── RESPONSIVE ─────────────────────────────────── */
   @media (max-width: 600px) {
@@ -519,327 +610,394 @@
     .sobre-box { flex-direction: column; }
     .cards-grid { grid-template-columns: 1fr; }
     .hero { background-attachment: scroll; }
+    .sidebar { width: 85vw; }
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="badge">@resumoscc</div>
-  <h1>Materiais feitos por quem<br>estuda <span>CC de verdade</span></h1>
-  <p>Resumos, listas de exercícios, flashcards e muito mais — produzidos por uma estudante de Ciência da Computação para quem não tem tempo a perder.</p>
-  <div class="hero-cta">
-    <a href="#produtos" class="btn-primary">Ver produtos ↓</a>
-    <a href="https://wa.me/5532999943382" target="_blank" class="btn-secondary">Falar no WhatsApp</a>
-  </div>
-</section>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-logo">@resumoscc</div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span>Resumos Digitais</span><span class="dot">●</span>
-    <span>Listas de Exercícios</span><span class="dot">●</span>
-    <span>Flashcards Físicos</span><span class="dot">●</span>
-    <span>Combos com Desconto</span><span class="dot">●</span>
-    <span>Aulas Particulares</span><span class="dot">●</span>
-    <span>Planos Mensais</span><span class="dot">●</span>
-    <span>Resumos Digitais</span><span class="dot">●</span>
-    <span>Listas de Exercícios</span><span class="dot">●</span>
-    <span>Flashcards Físicos</span><span class="dot">●</span>
-    <span>Combos com Desconto</span><span class="dot">●</span>
-    <span>Aulas Particulares</span><span class="dot">●</span>
-    <span>Planos Mensais</span><span class="dot">●</span>
+<!-- OVERLAY -->
+<div class="sidebar-overlay" id="overlay"></div>
+
+<!-- MENU LATERAL -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-item active" data-page="inicio">Início</div>
+  <div class="sidebar-item" data-page="resumos">Resumos</div>
+  <div class="sidebar-item" data-page="listas">Listas de Exercícios</div>
+  <div class="sidebar-item" data-page="flashcards">Flashcards</div>
+  <div class="sidebar-item" data-page="combos">Combos</div>
+  <div class="sidebar-item" data-page="aulas">Aulas Particulares</div>
+  <div class="sidebar-item" data-page="trabalhos">Ajuda em Trabalhos</div>
+  <div class="sidebar-item" data-page="contato">Contato</div>
+</aside>
+
+<!-- ══ PÁGINA: INÍCIO ══ -->
+<div class="page active" id="page-inicio">
+  <section class="hero">
+    <div class="badge">@resumoscc</div>
+    <h1>Materiais feitos por quem<br>estuda <span>CC de verdade</span></h1>
+    <p>Resumos, listas de exercícios, flashcards e muito mais — produzidos por uma estudante de Ciência da Computação para quem não tem tempo a perder.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn-primary" onclick="goTo('resumos')">Ver produtos ↓</a>
+      <a href="https://wa.me/5532999943382" target="_blank" class="btn-secondary">Falar no WhatsApp</a>
+    </div>
+  </section>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Resumos Digitais</span><span class="dot">●</span>
+      <span>Listas de Exercícios</span><span class="dot">●</span>
+      <span>Flashcards Físicos</span><span class="dot">●</span>
+      <span>Combos com Desconto</span><span class="dot">●</span>
+      <span>Aulas Particulares</span><span class="dot">●</span>
+      <span>Resumos Digitais</span><span class="dot">●</span>
+      <span>Listas de Exercícios</span><span class="dot">●</span>
+      <span>Flashcards Físicos</span><span class="dot">●</span>
+      <span>Combos com Desconto</span><span class="dot">●</span>
+      <span>Aulas Particulares</span><span class="dot">●</span>
+    </div>
   </div>
+  <footer>
+    <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+  </footer>
 </div>
 
-<!-- PRODUTOS -->
-<section id="produtos">
-  <div class="container">
-
-    <div class="section-label reveal">Catálogo completo</div>
-    <h2 class="section-title reveal">Escolha seu material</h2>
-    <p class="section-sub reveal">Todos os materiais são feitos sob demanda e entregues digitalmente, exceto quando indicado.</p>
-
-    <!-- RESUMOS -->
-    <div class="product-group reveal">
-      <div class="group-header">
-        <div class="group-icon">📄</div>
-        <div class="group-title">Resumos</div>
+<!-- ══ PÁGINA: RESUMOS ══ -->
+<div class="page" id="page-resumos">
+  <div class="page-content">
+    <div class="section-label">Materiais</div>
+    <h2 class="section-title">Resumos</h2>
+    <p class="section-sub">Resumos digitais e feitos à mão para facilitar seus estudos em CC.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-tag">Digital · Word</div>
+        <div class="card-name">Resumo Digital — 1 assunto + 10 exercícios</div>
+        <div class="card-detail">Matérias da grade de CC</div>
+        <div class="card-footer">
+          <div class="card-price"><small>a partir de</small>R$ 20,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20digital%20(1%20assunto%20+%2010%20exercícios)" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
       </div>
-      <div class="cards-grid">
-
-        <div class="card">
-          <div class="card-tag">Digital · Word</div>
-          <div class="card-name">Resumo Digital — 1 assunto + 10 exercícios</div>
-          <div class="card-detail">Matérias da grade de CC</div>
-          <div class="card-footer">
-            <div class="card-price"><small>a partir de</small>R$ 20,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20digital%20(1%20assunto%20+%2010%20exercícios)" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
+      <div class="card">
+        <div class="card-tag">Digital · Word</div>
+        <div class="card-name">Resumo Completo de Matéria</div>
+        <div class="card-detail">Conteúdo completo da disciplina</div>
+        <div class="card-footer">
+          <div class="card-price"><small>a partir de</small>R$ 30,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20completo%20de%20matéria" target="_blank" class="btn-comprar">Pedir agora</a>
         </div>
-
-        <div class="card">
-          <div class="card-tag">Digital · Word</div>
-          <div class="card-name">Resumo Completo de Matéria</div>
-          <div class="card-detail">Conteúdo completo da disciplina</div>
-          <div class="card-footer">
-            <div class="card-price"><small>a partir de</small>R$ 30,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20completo%20de%20matéria" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag orange">Feito à mão · Foto/Scan</div>
-          <div class="card-name">Resumo Feito à Mão — 1 assunto</div>
-          <div class="card-detail">Entregue digitalizado em alta qualidade</div>
-          <div class="card-footer">
-            <div class="card-price"><small>a partir de</small>R$ 20,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20feito%20à%20mão" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-        <div class="card card-combinar">
-          <div class="card-tag orange">Feito à mão · Físico</div>
-          <div class="card-name">Resumo Feito à Mão — Físico</div>
-          <div class="card-detail">Entregue presencialmente — 1 assunto</div>
-          <div class="card-footer">
-            <div class="card-price">A combinar</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20físico%20feito%20à%20mão" target="_blank" class="btn-comprar">Consultar</a>
-          </div>
-        </div>
-
       </div>
-      <div class="nota-box">
-        <strong>Atenção:</strong> Matérias fora da grade de CC acrescem 20% no preço, com prazo de entrega de aproximadamente 1 semana.
+      <div class="card">
+        <div class="card-tag orange">Feito à mão · Foto/Scan</div>
+        <div class="card-name">Resumo Feito à Mão — 1 assunto</div>
+        <div class="card-detail">Entregue digitalizado em alta qualidade</div>
+        <div class="card-footer">
+          <div class="card-price"><small>a partir de</small>R$ 20,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20feito%20à%20mão" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
       </div>
-    </div>
-
-    <!-- LISTAS -->
-    <div class="product-group reveal">
-      <div class="group-header">
-        <div class="group-icon">📝</div>
-        <div class="group-title">Listas de Exercícios</div>
-      </div>
-      <div class="cards-grid">
-
-        <div class="card">
-          <div class="card-tag green">Pequena</div>
-          <div class="card-name">Lista Pequena</div>
-          <div class="card-detail">Até 15 questões</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 9,90</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20uma%20lista%20pequena%20de%20exercícios" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag">Média</div>
-          <div class="card-name">Lista Média</div>
-          <div class="card-detail">Até 30 questões</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 13,90</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20uma%20lista%20média%20de%20exercícios" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag orange">Grande</div>
-          <div class="card-name">Lista Grande</div>
-          <div class="card-detail">Acima de 30 questões — com ou sem gabarito</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 23,90</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20uma%20lista%20grande%20de%20exercícios" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- FLASHCARDS -->
-    <div class="product-group reveal">
-      <div class="group-header">
-        <div class="group-icon">🗂️</div>
-        <div class="group-title">Flashcards Físicos — Entrega Presencial</div>
-      </div>
-      <div class="cards-grid">
-
-        <div class="card">
-          <div class="card-tag green">Kit Básico</div>
-          <div class="card-name">10 unidades</div>
-          <div class="card-detail">Flashcards físicos para revisão ativa</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 8,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20kit%20básico%20de%20flashcards%20(10%20unidades)" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag">Kit Intermediário</div>
-          <div class="card-name">20 unidades</div>
-          <div class="card-detail">Flashcards físicos para revisão ativa</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 15,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20kit%20intermediário%20de%20flashcards%20(20%20unidades)" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag orange">Kit Completo</div>
-          <div class="card-name">30 unidades</div>
-          <div class="card-detail">Flashcards físicos para revisão ativa</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 22,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20kit%20completo%20de%20flashcards%20(30%20unidades)" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- COMBOS -->
-    <div class="product-group reveal">
-      <div class="group-header">
-        <div class="group-icon">🎁</div>
-        <div class="group-title">Combos — 10% de desconto</div>
-      </div>
-      <div class="cards-grid">
-
-        <div class="card">
-          <div class="card-tag green">Combo</div>
-          <div class="card-name">Resumo + Flashcards</div>
-          <div class="card-detail">Resumo de 1 assunto + kit intermediário (20 un.)</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 31,50</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20combo%20Resumo%20+%20Flashcards" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag green">Combo</div>
-          <div class="card-name">Resumo + Lista</div>
-          <div class="card-detail">Resumo de 1 assunto + lista média</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 30,50</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20combo%20Resumo%20+%20Lista" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag green">Combo</div>
-          <div class="card-name">Resumo + Lista + Flashcards</div>
-          <div class="card-detail">Resumo + lista média + kit intermediário</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 44,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20combo%20Resumo%20+%20Lista%20+%20Flashcards" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag orange">Combo Completo</div>
-          <div class="card-name">Combo Completo</div>
-          <div class="card-detail">Resumo + lista média + kit intermediário + aula de 1h</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 71,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20Combo%20Completo" target="_blank" class="btn-comprar">Pedir agora</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- AULAS PARTICULARES -->
-    <div class="product-group reveal">
-      <div class="group-header">
-        <div class="group-icon">🎓</div>
-        <div class="group-title">Aulas Particulares</div>
-      </div>
-      <div class="cards-grid">
-
-        <div class="card">
-          <div class="card-tag">Online ou Presencial</div>
-          <div class="card-name">Aula Avulsa — 1 hora</div>
-          <div class="card-detail">Focada na sua dificuldade</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 30,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20agendar%20uma%20aula%20particular%20avulsa" target="_blank" class="btn-comprar">Agendar</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag orange">Pacote</div>
-          <div class="card-name">Pacote 2 Horas</div>
-          <div class="card-detail">Online ou presencial — focado na sua dificuldade</div>
-          <div class="card-footer">
-            <div class="card-price">R$ 55,00</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20pacote%20de%202%20horas%20de%20aula%20particular" target="_blank" class="btn-comprar">Agendar</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- AJUDA EM TRABALHOS -->
-    <div class="product-group reveal">
-      <div class="group-header">
-        <div class="group-icon">💼</div>
-        <div class="group-title">Ajuda em Trabalhos</div>
-      </div>
-      <div class="cards-grid">
-        <div class="card card-combinar">
-          <div class="card-name">Auxílio em Trabalhos Acadêmicos</div>
-          <div class="card-detail">Entre em contato para orçamento conforme o trabalho.</div>
-          <div class="card-footer">
-            <div class="card-price">A combinar</div>
-            <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20orçamento%20para%20ajuda%20em%20trabalho" target="_blank" class="btn-comprar">Consultar</a>
-          </div>
+      <div class="card card-combinar">
+        <div class="card-tag orange">Feito à mão · Físico</div>
+        <div class="card-name">Resumo Feito à Mão — Físico</div>
+        <div class="card-detail">Entregue presencialmente — 1 assunto</div>
+        <div class="card-footer">
+          <div class="card-price">A combinar</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20físico%20feito%20à%20mão" target="_blank" class="btn-comprar">Consultar</a>
         </div>
       </div>
     </div>
-
-    <!-- BANNER CTA -->
-    <div class="banner-destaque reveal">
+    <div class="nota-box">
+      <strong>Atenção:</strong> Matérias fora da grade de CC acrescem 20% no preço, com prazo de entrega de aproximadamente 1 semana.
+    </div>
+    <div class="banner-destaque">
       <div>
         <h3>Não encontrou o que precisa?</h3>
-        <p>Fala comigo no WhatsApp e a gente resolve. Produzo materiais sob demanda para qualquer matéria.</p>
+        <p>Fala comigo no WhatsApp e a gente resolve.</p>
       </div>
       <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20material%20personalizado" target="_blank" class="btn-banner">Falar agora →</a>
     </div>
+  </div>
+  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+</div>
 
-    <!-- SOBRE -->
-    <div class="reveal">
-      <div class="section-label">Quem faz</div>
-      <h2 class="section-title">Feito por quem vive o CC</h2>
-      <br>
-      <div class="sobre-box">
-        <div class="sobre-avatar">G</div>
-        <div class="sobre-texto">
-          <h3>Gabriella Flausino</h3>
-          <p>Estudante de Ciência da Computação em uma universidade federal. Produzo materiais de estudo a partir da minha própria rotina acadêmica — não é conteúdo genérico, é o que realmente funciona nas matérias de CC. Acompanhe no Instagram: <a href="https://instagram.com/resumoscc" style="color:var(--laranja)">@resumoscc</a></p>
+<!-- ══ PÁGINA: LISTAS ══ -->
+<div class="page" id="page-listas">
+  <div class="page-content">
+    <div class="section-label">Materiais</div>
+    <h2 class="section-title">Listas de Exercícios</h2>
+    <p class="section-sub">Listas com gabarito para praticar e fixar o conteúdo.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-tag green">Pequena</div>
+        <div class="card-name">Lista Pequena</div>
+        <div class="card-detail">Até 15 questões</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 9,90</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20uma%20lista%20pequena%20de%20exercícios" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-tag">Média</div>
+        <div class="card-name">Lista Média</div>
+        <div class="card-detail">Até 30 questões</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 13,90</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20uma%20lista%20média%20de%20exercícios" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-tag orange">Grande</div>
+        <div class="card-name">Lista Grande</div>
+        <div class="card-detail">Acima de 30 questões — com ou sem gabarito</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 23,90</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20uma%20lista%20grande%20de%20exercícios" target="_blank" class="btn-comprar">Pedir agora</a>
         </div>
       </div>
     </div>
-
+    <div class="banner-destaque">
+      <div>
+        <h3>Não encontrou o que precisa?</h3>
+        <p>Fala comigo no WhatsApp e a gente resolve.</p>
+      </div>
+      <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20material%20personalizado" target="_blank" class="btn-banner">Falar agora →</a>
+    </div>
   </div>
-</section>
+  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+</div>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
-</footer>
+<!-- ══ PÁGINA: FLASHCARDS ══ -->
+<div class="page" id="page-flashcards">
+  <div class="page-content">
+    <div class="section-label">Materiais</div>
+    <h2 class="section-title">Flashcards Físicos</h2>
+    <p class="section-sub">Entrega presencial em São João del-Rei. Perfeitos para revisão ativa.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-tag green">Kit Básico</div>
+        <div class="card-name">10 unidades</div>
+        <div class="card-detail">Flashcards físicos para revisão ativa</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 8,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20kit%20básico%20de%20flashcards%20(10%20unidades)" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-tag">Kit Intermediário</div>
+        <div class="card-name">20 unidades</div>
+        <div class="card-detail">Flashcards físicos para revisão ativa</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 15,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20kit%20intermediário%20de%20flashcards%20(20%20unidades)" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-tag orange">Kit Completo</div>
+        <div class="card-name">30 unidades</div>
+        <div class="card-detail">Flashcards físicos para revisão ativa</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 22,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20kit%20completo%20de%20flashcards%20(30%20unidades)" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+    </div>
+    <div class="banner-destaque">
+      <div>
+        <h3>Não encontrou o que precisa?</h3>
+        <p>Fala comigo no WhatsApp e a gente resolve.</p>
+      </div>
+      <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20material%20personalizado" target="_blank" class="btn-banner">Falar agora →</a>
+    </div>
+  </div>
+  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+</div>
+
+<!-- ══ PÁGINA: COMBOS ══ -->
+<div class="page" id="page-combos">
+  <div class="page-content">
+    <div class="section-label">Oferta especial</div>
+    <h2 class="section-title">Combos — 10% de desconto</h2>
+    <p class="section-sub">Combine materiais e economize. Quanto mais completo, mais você aprende.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-tag green">Combo</div>
+        <div class="card-name">Resumo + Flashcards</div>
+        <div class="card-detail">Resumo de 1 assunto + kit intermediário (20 un.)</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 31,50</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20combo%20Resumo%20+%20Flashcards" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-tag green">Combo</div>
+        <div class="card-name">Resumo + Lista</div>
+        <div class="card-detail">Resumo de 1 assunto + lista média</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 30,50</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20combo%20Resumo%20+%20Lista" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-tag green">Combo</div>
+        <div class="card-name">Resumo + Lista + Flashcards</div>
+        <div class="card-detail">Resumo + lista média + kit intermediário</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 44,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20combo%20Resumo%20+%20Lista%20+%20Flashcards" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-tag orange">Combo Completo</div>
+        <div class="card-name">Combo Completo</div>
+        <div class="card-detail">Resumo + lista média + kit intermediário + aula de 1h</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 71,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20Combo%20Completo" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+    </div>
+    <div class="banner-destaque">
+      <div>
+        <h3>Quer um combo personalizado?</h3>
+        <p>Fala comigo no WhatsApp e a gente monta o combo ideal para você.</p>
+      </div>
+      <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20combo%20personalizado" target="_blank" class="btn-banner">Falar agora →</a>
+    </div>
+  </div>
+  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+</div>
+
+<!-- ══ PÁGINA: AULAS ══ -->
+<div class="page" id="page-aulas">
+  <div class="page-content">
+    <div class="section-label">Aprenda mais</div>
+    <h2 class="section-title">Aulas Particulares</h2>
+    <p class="section-sub">Online ou presencial, focadas na sua dificuldade específica.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-tag">Online ou Presencial</div>
+        <div class="card-name">Aula Avulsa — 1 hora</div>
+        <div class="card-detail">Focada na sua dificuldade</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 30,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20agendar%20uma%20aula%20particular%20avulsa" target="_blank" class="btn-comprar">Agendar</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-tag orange">Pacote</div>
+        <div class="card-name">Pacote 2 Horas</div>
+        <div class="card-detail">Online ou presencial — focado na sua dificuldade</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 55,00</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20o%20pacote%20de%202%20horas%20de%20aula%20particular" target="_blank" class="btn-comprar">Agendar</a>
+        </div>
+      </div>
+    </div>
+    <div class="banner-destaque">
+      <div>
+        <h3>Travou em alguma matéria?</h3>
+        <p>Me chama no WhatsApp e a gente agenda uma aula.</p>
+      </div>
+      <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20agendar%20uma%20aula%20particular" target="_blank" class="btn-banner">Falar agora →</a>
+    </div>
+  </div>
+  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+</div>
+
+<!-- ══ PÁGINA: TRABALHOS ══ -->
+<div class="page" id="page-trabalhos">
+  <div class="page-content">
+    <div class="section-label">Suporte acadêmico</div>
+    <h2 class="section-title">Ajuda em Trabalhos</h2>
+    <p class="section-sub">Entre em contato para orçamento conforme o trabalho.</p>
+    <div class="cards-grid">
+      <div class="card card-combinar">
+        <div class="card-name">Auxílio em Trabalhos Acadêmicos</div>
+        <div class="card-detail">Entre em contato para orçamento conforme o trabalho.</div>
+        <div class="card-footer">
+          <div class="card-price">A combinar</div>
+          <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20orçamento%20para%20ajuda%20em%20trabalho" target="_blank" class="btn-comprar">Consultar</a>
+        </div>
+      </div>
+    </div>
+    <div class="banner-destaque">
+      <div>
+        <h3>Precisa de ajuda com um trabalho?</h3>
+        <p>Me conta o que precisa e a gente vê o melhor jeito de te ajudar.</p>
+      </div>
+      <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20orçamento%20para%20ajuda%20em%20trabalho" target="_blank" class="btn-banner">Falar agora →</a>
+    </div>
+  </div>
+  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+</div>
+
+<!-- ══ PÁGINA: CONTATO ══ -->
+<div class="page" id="page-contato">
+  <div class="page-content">
+    <div class="section-label">Quem faz</div>
+    <h2 class="section-title">Feito por quem vive o CC</h2>
+    <p class="section-sub">Estudante de Ciência da Computação produzindo materiais reais para quem estuda de verdade.</p>
+    <div class="sobre-box">
+      <div class="sobre-avatar">G</div>
+      <div class="sobre-texto">
+        <h3>Gabriella Flausino</h3>
+        <p>Estudante de Ciência da Computação em uma universidade federal. Produzo materiais de estudo a partir da minha própria rotina acadêmica — não é conteúdo genérico, é o que realmente funciona nas matérias de CC.</p>
+      </div>
+    </div>
+    <div class="section-label" style="margin-top:2rem">Fale comigo</div>
+    <div class="contato-grid">
+      <a href="https://wa.me/5532999943382" target="_blank" class="contato-card">
+        <div class="contato-icon">💬</div>
+        <div class="contato-info">
+          <span>WhatsApp</span>
+          <small>(32) 99922-3382</small>
+        </div>
+      </a>
+      <a href="https://instagram.com/resumoscc" target="_blank" class="contato-card">
+        <div class="contato-icon">📸</div>
+        <div class="contato-info">
+          <span>Instagram</span>
+          <small>@resumoscc</small>
+        </div>
+      </a>
+    </div>
+  </div>
+  <footer><p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p></footer>
+</div>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  function toggleMenu() {
+    hamburger.classList.toggle('open');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('open');
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', toggleMenu);
+
+  function goTo(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    document.getElementById('page-' + pageId).classList.add('active');
+    document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+    window.scrollTo(0, 0);
+    if (sidebar.classList.contains('open')) toggleMenu();
+  }
+
+  document.querySelectorAll('.sidebar-item').forEach(item => {
+    item.addEventListener('click', () => goTo(item.dataset.page));
+  });
 </script>
 
 </body>
