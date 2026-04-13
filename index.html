@@ -919,6 +919,84 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(249,115,22,0.35);
   }
+
+  /* ── CARD AMOSTRA GRÁTIS ────────────────────────── */
+  .card-amostra {
+    background: linear-gradient(135deg, rgba(249,115,22,0.12) 0%, rgba(250,204,21,0.06) 100%);
+    border: 1.5px solid rgba(249,115,22,0.4);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .card-amostra-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .card-amostra-icon {
+    width: 48px; height: 48px;
+    background: var(--laranja);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .card-amostra-texto span {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    color: var(--laranja);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .card-amostra-texto h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--branco);
+    margin-bottom: 2px;
+  }
+
+  .card-amostra-texto p {
+    font-size: 0.82rem;
+    color: var(--texto-muted);
+  }
+
+  .btn-download {
+    background: var(--laranja);
+    color: var(--preto);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .btn-download:hover {
+    background: #ea6a0a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(249,115,22,0.35);
+  }
 </style>
 </head>
 <body>
@@ -981,6 +1059,20 @@
   <div class="page-content">
     <div class="section-label">Materiais</div>
     <h2 class="section-title">Resumos</h2>
+    <!-- CARD AMOSTRA GRÁTIS -->
+    <div class="card-amostra">
+      <div class="card-amostra-info">
+        <div class="card-amostra-icon">📄</div>
+        <div class="card-amostra-texto">
+          <span>Amostra grátis</span>
+          <h4>Resumo de TAD — Tipo Abstrato de Dados</h4>
+          <p>Resumo completo com teoria e todos os exemplos em C · PDF gratuito</p>
+        </div>
+      </div>
+      <a href="https://gabiflausino.github.io/Resumoscc/resumo%20TAD.pdf" target="_blank" class="btn-download">⬇ Baixar grátis</a>
+    </div>
+
+
     <p class="section-sub">Resumos digitais e feitos à mão para facilitar seus estudos em CC.</p>
     <div class="cards-grid">
       <div class="card">
