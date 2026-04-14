@@ -722,48 +722,60 @@
   }
 
   /* ── BACKGROUNDS DAS PÁGINAS ────────────────────── */
-  #page-resumos    { background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
-  #page-listas     { background-image: url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
-  #page-flashcards { background-image: url('https://images.unsplash.com/photo-1553484771-371a605b060b?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
-  #page-combos     { background-image: url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
-  #page-aulas      { background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
-  #page-trabalhos  { background-image: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
-  #page-contato    { background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
-
-  /* Overlay escuro em todas as páginas com fundo */
-  #page-resumos .page-content,
-  #page-listas .page-content,
-  #page-flashcards .page-content,
-  #page-combos .page-content,
-  #page-aulas .page-content,
-  #page-trabalhos .page-content,
-  #page-contato .page-content {
-    background: rgba(10,10,10,0.93);
-    backdrop-filter: blur(3px);
-  }
-
-  #page-resumos footer,
-  #page-listas footer,
-  #page-flashcards footer,
-  #page-combos footer,
-  #page-aulas footer,
-  #page-trabalhos footer,
-  #page-contato footer {
-    background: rgba(10,10,10,0.9);
-  }
-
-  @media (max-width: 600px) {
-    #page-resumos, #page-listas, #page-flashcards,
-    #page-combos, #page-aulas, #page-trabalhos, #page-contato {
-      background-attachment: scroll;
-    }
+  #page-resumos,
+  #page-listas,
+  #page-flashcards,
+  #page-combos,
+  #page-aulas,
+  #page-trabalhos,
+  #page-contato {
+    background-color: #2A2A2A;
+    background-image:
+      radial-gradient(ellipse at 15% 25%, rgba(220,220,220,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 75%, rgba(200,200,200,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 10%, rgba(240,240,240,0.12) 0%, transparent 40%),
+      radial-gradient(ellipse at 30% 80%, rgba(190,190,190,0.15) 0%, transparent 45%),
+      radial-gradient(ellipse at 70% 40%, rgba(210,210,210,0.10) 0%, transparent 40%),
+      repeating-linear-gradient(
+        125deg,
+        transparent,
+        transparent 60px,
+        rgba(220,220,220,0.06) 60px,
+        rgba(220,220,220,0.06) 62px
+      ),
+      repeating-linear-gradient(
+        55deg,
+        transparent,
+        transparent 80px,
+        rgba(200,200,200,0.04) 80px,
+        rgba(200,200,200,0.04) 82px
+      );
   }
 
   /* ── CARDS DE NAVEGAÇÃO (INÍCIO) ───────────────── */
   .nav-cards-section {
     padding: 4rem 2rem;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .nav-cards-section > * {
     max-width: 1000px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #page-inicio .nav-cards-section {
+    background-color: #2A2A2A;
+    background-image:
+      radial-gradient(ellipse at 15% 25%, rgba(220,220,220,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 75%, rgba(200,200,200,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 10%, rgba(240,240,240,0.12) 0%, transparent 40%),
+      radial-gradient(ellipse at 30% 80%, rgba(190,190,190,0.15) 0%, transparent 45%),
+      radial-gradient(ellipse at 70% 40%, rgba(210,210,210,0.10) 0%, transparent 40%),
+      repeating-linear-gradient(125deg, transparent, transparent 60px, rgba(220,220,220,0.06) 60px, rgba(220,220,220,0.06) 62px),
+      repeating-linear-gradient(55deg, transparent, transparent 80px, rgba(200,200,200,0.04) 80px, rgba(200,200,200,0.04) 82px);
+    padding: 4rem 2rem;
   }
 
   .nav-cards-label {
@@ -1030,7 +1042,15 @@
   /* ── CONTADOR ───────────────────────────────────── */
   .contador-section {
     padding: 3rem 2rem;
-    background: var(--cinza-med);
+    background-color: #2A2A2A;
+    background-image:
+      radial-gradient(ellipse at 15% 25%, rgba(220,220,220,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 75%, rgba(200,200,200,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 10%, rgba(240,240,240,0.12) 0%, transparent 40%),
+      radial-gradient(ellipse at 30% 80%, rgba(190,190,190,0.15) 0%, transparent 45%),
+      radial-gradient(ellipse at 70% 40%, rgba(210,210,210,0.10) 0%, transparent 40%),
+      repeating-linear-gradient(125deg, transparent, transparent 60px, rgba(220,220,220,0.06) 60px, rgba(220,220,220,0.06) 62px),
+      repeating-linear-gradient(55deg, transparent, transparent 80px, rgba(200,200,200,0.04) 80px, rgba(200,200,200,0.04) 82px);
     border-top: 1px solid var(--cinza-borda);
     border-bottom: 1px solid var(--cinza-borda);
   }
