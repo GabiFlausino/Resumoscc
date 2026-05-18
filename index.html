@@ -727,6 +727,7 @@
   #page-flashcards,
   #page-combos,
   #page-aulas,
+  #page-ebooks,
   #page-trabalhos,
   #page-contato {
     background-color: #2A2A2A;
@@ -1105,6 +1106,7 @@
   <div class="sidebar-item" data-page="combos">Combos</div>
   <div class="sidebar-item" data-page="aulas">Aulas Particulares</div>
   <div class="sidebar-item" data-page="trabalhos">Ajuda em Trabalhos</div>
+  <div class="sidebar-item" data-page="ebooks">eBooks Prontos</div>
   <div class="sidebar-item" data-page="contato">Contato</div>
 </aside>
 
@@ -1115,7 +1117,7 @@
     <h1>Materiais feitos por quem<br>estuda <span>CC de verdade</span></h1>
     <p>Resumos, listas de exercícios, flashcards e muito mais — produzidos por uma estudante de Ciência da Computação para quem não tem tempo a perder.</p>
     <div class="hero-cta">
-      <a href="#" class="btn-primary" onclick="goTo('resumos')">Ver produtos ↓</a>
+      <a href="#" class="btn-primary" onclick="goTo('ebooks')">Ver eBooks ↓</a>
       <a href="https://wa.me/5532999943382" target="_blank" class="btn-secondary">Falar no WhatsApp</a>
     </div>
   </section>
@@ -1142,7 +1144,7 @@
         <div class="contador-label">Visualizações no TikTok</div>
       </div>
       <div class="contador-item">
-        <div class="contador-numero">43</div>
+        <div class="contador-numero">46</div>
         <div class="contador-label">Seguidores e crescendo</div>
       </div>
       <div class="contador-item">
@@ -1190,6 +1192,12 @@
         <div class="nav-card-title">Aulas Particulares</div>
         <div class="nav-card-desc">Online ou presencial, focadas na sua dificuldade.</div>
         <div class="nav-card-cta">Ver aulas →</div>
+      </div>
+      <div class="nav-card" onclick="goTo('ebooks')">
+        <div class="nav-card-icon">📚</div>
+        <div class="nav-card-title">eBooks Prontos</div>
+        <div class="nav-card-desc">PDFs completos para comprar e estudar agora — entrega automática.</div>
+        <div class="nav-card-cta">Ver eBooks →</div>
       </div>
       <div class="nav-card" onclick="goTo('trabalhos')">
         <div class="nav-card-icon">💼</div>
@@ -1259,24 +1267,8 @@
           <a href="https://wa.me/5532999943382?text=Olá!%20Quero%20um%20resumo%20físico%20feito%20à%20mão%21" target="_blank" class="btn-comprar">Consultar</a>
         </div>
       </div>
-      <div class="card" style="background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.4);">
-        <div class="card-tag green">Digital · PDF</div>
-        <div class="card-name">Resumo — Lista Encadeada Simples</div>
-        <div class="card-detail">Teoria completa + implementação em C com todas as funções explicadas · PDF</div>
-        <div class="card-footer">
-          <div class="card-price">R$ 10,00</div>
-          <a href="https://wa.me/5532999943382?text=Ol%C3%A1!%20Quero%20o%20resumo%20de%20Lista%20Encadeada%20Simples!" target="_blank" class="btn-comprar">Pedir agora</a>
-        </div>
-      </div>
-      <div class="card" style="background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.4);">
-        <div class="card-tag green">Digital · PDF</div>
-        <div class="card-name">Resumo — Lista Duplamente Encadeada</div>
-        <div class="card-detail">Teoria completa + implementação em C com todas as funções explicadas · PDF</div>
-        <div class="card-footer">
-          <div class="card-price">R$ 10,00</div>
-          <a href="https://wa.me/5532999943382?text=Ol%C3%A1!%20Quero%20o%20resumo%20de%20Lista%20Duplamente%20Encadeada!" target="_blank" class="btn-comprar">Pedir agora</a>
-        </div>
-      </div>
+
+
     </div>
     <div class="nota-box">
       <strong>Atenção:</strong> Matérias fora da grade de CC acrescem 20% no preço, com prazo de entrega de aproximadamente 1 semana.
@@ -1609,6 +1601,66 @@
   </footer>
 </div>
 
+<!-- ══ PÁGINA: EBOOKS ══ -->
+<div class="page" id="page-ebooks">
+  <div class="page-content">
+    <div class="section-label">Compra e estuda agora</div>
+    <h2 class="section-title">eBooks Prontos</h2>
+    <p class="section-sub">PDFs completos para baixar e estudar agora. Entrega automática após a compra.</p>
+    <div class="cards-grid">
+      <div class="card" style="background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.4);">
+        <div class="card-tag green">eBook · PDF</div>
+        <div class="card-name">Como não reprovar de novo</div>
+        <div class="card-detail">Guia prático com métodos de estudo, leitura ativa, active recall e plano de ação para a próxima prova</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 10,00</div>
+          <a href="https://pay.kiwify.com.br/6N8Q8TU" target="_blank" class="btn-comprar">Comprar agora</a>
+        </div>
+      </div>
+      <div class="card" style="background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.4);">
+        <div class="card-tag green">eBook · PDF</div>
+        <div class="card-name">Do zero à aprovação</div>
+        <div class="card-detail">Guia completo para organizar seus estudos do zero e chegar aprovado nas matérias do curso</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 9,90</div>
+          <a href="https://pay.kiwify.com.br/FyIo01s" target="_blank" class="btn-comprar">Comprar agora</a>
+        </div>
+      </div>
+      <div class="card" style="background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.4);">
+        <div class="card-tag green">eBook · PDF</div>
+        <div class="card-name">Resumo — Lista Encadeada Simples</div>
+        <div class="card-detail">Teoria completa + implementação em C com todas as funções explicadas</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 10,00</div>
+          <a href="https://wa.me/5532999943382?text=Ol%C3%A1!%20Quero%20o%20resumo%20de%20Lista%20Encadeada%20Simples!" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+      <div class="card" style="background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.4);">
+        <div class="card-tag green">eBook · PDF</div>
+        <div class="card-name">Resumo — Lista Duplamente Encadeada</div>
+        <div class="card-detail">Teoria completa + implementação em C com todas as funções explicadas</div>
+        <div class="card-footer">
+          <div class="card-price">R$ 10,00</div>
+          <a href="https://wa.me/5532999943382?text=Ol%C3%A1!%20Quero%20o%20resumo%20de%20Lista%20Duplamente%20Encadeada!" target="_blank" class="btn-comprar">Pedir agora</a>
+        </div>
+      </div>
+    </div>
+    <div class="banner-destaque">
+      <div>
+        <h3>Tem dúvida sobre algum produto?</h3>
+        <p>Fala comigo no WhatsApp e a gente resolve.</p>
+      </div>
+      <a href="https://wa.me/5532999943382?text=Ol%C3%A1!%20Tenho%20d%C3%BAvida%20sobre%20os%20eBooks!" target="_blank" class="btn-banner">Falar agora →</a>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 @resumoscc · <a href="https://wa.me/5532999943382">WhatsApp</a> · <a href="https://instagram.com/resumoscc">Instagram</a></p>
+      <button class="btn-voltar" onclick="goTo('inicio')">↑ Voltar ao início</button>
+    </div>
+  </footer>
+</div>
+
 <!-- BOTÃO FLUTUANTE WHATSAPP -->
 <a href="https://wa.me/5532999943382" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1638,6 +1690,7 @@
     combos: 'Combos',
     aulas: 'Aulas Particulares',
     trabalhos: 'Ajuda em Trabalhos',
+    ebooks: 'eBooks Prontos',
     contato: 'Contato'
   };
 
